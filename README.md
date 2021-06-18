@@ -15,6 +15,7 @@ Clone this repo and then run
 ```
 yarn install
 ```
+*Make sure you're running from `main` branch
 
 ### Compiles and hot-reloads for development
 ```
