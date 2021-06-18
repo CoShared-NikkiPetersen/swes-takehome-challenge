@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Building from '../components/Building';
+import Building from '../components/Building'
+import Company from '../components/Company'
 
 Vue.use(VueRouter)
 

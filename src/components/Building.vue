@@ -1,6 +1,6 @@
 <template>
   <div class="building-wrapper">
-    <h1>building name</h1>
+    <h1>{{ this.$route.params.name }}</h1>
     <h2>adddress, country</h2>
     <h4>rent per floor</h4>
     <h4>number of floors</h4>
@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: "Building"
+  name: 'Building'
 }
 </script>
 

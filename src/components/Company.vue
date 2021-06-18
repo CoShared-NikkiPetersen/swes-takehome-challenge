@@ -1,6 +1,6 @@
 <template>
   <div class="company-wrapper">
-    <h1>company name</h1>
+    <h1>{{ this.$route.params.name }}</h1>
     <p>Floor</p>
     <p>List of employees</p>
     <p>Add/remove employee in company</p>
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "Company"
+  name: 'Company'
 }
 </script>
 
