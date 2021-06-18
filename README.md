@@ -1,4 +1,4 @@
-# SWES Take-Home Challenge 
+# Nikki Petersen SWES Take-Home Challenge 
 
 ## Please Note
 
