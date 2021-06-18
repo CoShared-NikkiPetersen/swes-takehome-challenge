@@ -5,15 +5,28 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
+import firebase from '../firebaseConfig'
+const db = firebase
 
 export default {
   name: 'Home',
+  data () {
+    return {
+      buildings: []
+    }
+  },
   components: {
   },
   created () {
     // todo ==> fetch to get data from back end
+    db.collection('buildings').get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          const building = doc.data()
+          building.id = doc.id
+          this.buildings.push(building)
+        })
+      })
   }
 }
 </script>
