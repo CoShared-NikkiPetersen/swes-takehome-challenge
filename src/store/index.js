@@ -78,5 +78,13 @@ export default new Vuex.Store({
     }
   },
   modules: {
+  },
+  getters: {
+    getSelectedBuilding: (state) => (name) => {
+      return state.fetchedBuildings.find(building => building.name === name)
+    },
+    getOccupants: (state) => (name) => {
+      return state.fetchedOffices(office => office.building === name)
+    }
   }
 })
