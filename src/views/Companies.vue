@@ -1,6 +1,8 @@
 <template>
   <div class="companies">
     <h1>Companies</h1>
+    <button @click="showForm = !showForm">Add a new tenant</button>
+    <AddCompany v-show="showForm" />
     <p>
       <RouterLink :to="{ name: 'Company', params: {name: 'Schmoogle'}}" >Schmoogle </RouterLink>
     </p>
@@ -16,8 +18,16 @@
 </template>
 
 <script>
+import AddCompany from '../components/AddCompany'
+
 export default {
-  name: 'Companies'
+  name: 'Companies',
+  data () {
+    return {
+      showForm: false
+    }
+  },
+  components: { AddCompany }
 }
 </script>
 

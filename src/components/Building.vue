@@ -64,16 +64,6 @@ export default {
       const occupied = this.fetchedOffices.filter(office => office.building === this.building.name).length
       return this.building.rent_per_floor * (this.building.number_of_floors - occupied)
     }
-    // findEmployees: function () {
-    //   const inBuilding = this.fetchedOffices.filter(office => office.building === this.building.name)
-    //   console.log(inBuilding)
-    //   return this.fetchedEmployees.filter(employee => inBuilding.includes(employee.company))
-    // }
-    // displayOccupied: function () {
-    //   const occupants = this.fetchedOffices.filter(office => office.building === this.building.name)
-    //   console.log('occupants: ', occupants)
-    //   // return occupants.map(office => office).sort()
-    // }
   }
 }
 </script>
