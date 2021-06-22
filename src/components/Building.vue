@@ -1,8 +1,14 @@
 <template>
   <div class="building-wrapper">
 <!--    <h1>{{ this.$route.params.name }}</h1>-->
-    <h2>Building Name:  {{ building.name }}</h2>
-    <h2>Address in {{ building.country }}:  {{ building.address }}</h2>
+    <div class="row-container">
+      <h2>Building Name:  {{ building.name }}</h2>
+      <button @click="showForm = !showForm">Add a new tenant in this building</button>
+    </div>
+    <AddCompany v-show="showForm" :vacancies="vacancies"/>
+
+    <h2>Address:  {{ building.address[0] }}, {{ building.address[1] }}, {{ building.address[2] }}, {{ building.address[3] }}</h2>
+    <h2>Country: {{ building.country }}</h2>
     <h3>Rent per floor:  {{ building.rent_per_floor }}</h3>
     <h3>Number of floors:  {{ building.number_of_floors }}</h3>
     <h3>Occupied floors:</h3>
@@ -17,14 +23,17 @@
 
 <script>
 import { mapState } from 'vuex'
+import AddCompany from '../components/AddCompany'
 
 export default {
   name: 'Building',
   data () {
     return {
-      id: this.$route.params.id
+      id: this.$route.params.id,
+      showForm: false
     }
   },
+  components: { AddCompany },
   computed: {
     ...mapState([
       // 'fetchedBuildings',
@@ -69,5 +78,13 @@ export default {
 </script>
 
 <style scoped>
+.row-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
 
+button {
+  margin: 0 20px;
+}
 </style>
