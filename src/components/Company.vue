@@ -1,6 +1,5 @@
 <template>
   <div class="company-wrapper">
-
     <div class="row-container">
       <h1>{{ this.$route.params.name }}</h1>
       <button @click="showForm = !showForm">Add a new employee to this company</button>
@@ -86,5 +85,15 @@ li {
   margin: 10px;
   border: 1px solid grey;
   border-radius: 5px;
+}
+
+.row-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+button {
+  margin: 0 20px;
 }
 </style>

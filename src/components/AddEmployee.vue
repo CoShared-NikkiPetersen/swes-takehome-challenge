@@ -1,17 +1,18 @@
 <template>
   <div class="form-container">
     <form class="form" @submit.prevent="AddNewEmployee">
-      <div class="new" v-show="employeeName">
-        {{ employeeName }}, {{ employeeTitle }}
+      <div class="new" >
+        <h3>{{ employeeFirstName }} {{ employeeLastName }} {{ title }}</h3>
       </div>
 
-      <label for="employeeFirstName">Employee Name: </label>
+      <label for="employeeFirstName">First Name: </label>
       <input id="employeeFirstName" type="text" name="employeeFirstName" minlength="5" v-model="employeeFirstName" required>
-      <label for="employeeLastName">Employee Name: </label>
+      <label for="employeeLastName">Last Name: </label>
       <input id="employeeLastName" type="text" name="employeeLastName" minlength="5" v-model="employeeLastName" required>
 
-      <label for="employeeTitle">Employee Title: </label>
-      <input id="employeeTitle" type="text" name="employeeTitle" minlength="5" v-model="employeeTitle" required>
+      <label for="employeeTitle">Title: </label>
+      <input id="employeeTitle" type="text" name="employeeTitle" minlength="5" v-model="title" required>
+      <br>
       <button class="button">Submit</button>
       <button type="reset" @click="resetForm">Cancel</button>
     </form>
@@ -67,7 +68,9 @@ export default {
       }
     },
     resetForm: function () {
-      this.companyName = null
+      this.employeeFirstName = null
+      this.employeeLastName = null
+      this.title = null
     }
   }
 }
@@ -85,5 +88,9 @@ export default {
 
 label {
   margin: 10px;
+}
+
+button {
+  margin: 0 20px;
 }
 </style>

@@ -92,4 +92,8 @@ export default {
 label {
   margin: 10px;
 }
+
+button {
+  margin: 0 20px;
+}
 </style>
