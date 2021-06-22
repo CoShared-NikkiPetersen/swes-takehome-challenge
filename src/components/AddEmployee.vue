@@ -8,11 +8,10 @@
       <label for="employeeFirstName">First Name: </label>
       <input id="employeeFirstName" type="text" name="employeeFirstName" minlength="5" v-model="employeeFirstName" required>
       <label for="employeeLastName">Last Name: </label>
-      <input id="employeeLastName" type="text" name="employeeLastName" minlength="5" v-model="employeeLastName" required>
+      <input id="employeeLastName" type="text" name="employeeLastName" v-model="employeeLastName" required>
 
       <label for="employeeTitle">Title: </label>
-      <input id="employeeTitle" type="text" name="employeeTitle" minlength="5" v-model="title" required>
-      <br>
+      <input id="employeeTitle" type="text" name="employeeTitle"  v-model="title" required>
       <button class="button">Submit</button>
       <button type="reset" @click="resetForm">Cancel</button>
     </form>
@@ -60,7 +59,7 @@ export default {
           company: this.companyName
         })
           .then(() => {
-            this.$router.push('/companies')
+            this.$router.push(`/companies/${this.companyName}`)
           })
           .catch(err => {
             console.log(err)

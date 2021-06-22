@@ -11,7 +11,8 @@
     </h3>
     <ul>
       <li v-for="office in officesByCompany" :key="office.id" class="office-card">
-        Building: {{ office.building }}, Floor: {{ office.floor }}
+        <h3>Building: {{ office.building }}</h3>
+        Floor: {{ office.floor }}
         <br>
         Rent for this building: {{ calculateRent(office.building) }}
       </li>

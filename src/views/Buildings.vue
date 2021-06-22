@@ -1,8 +1,15 @@
 <template>
   <div class="buildings">
     <h1>Buildings</h1>
+    <h4>Buildings with vacancies are green</h4>
+    <h4>Click on a building name to see that building's details and to add a company.</h4>
+    <h4>Click on a tenant to see that company's details and to add employees.</h4>
     <ul>
-      <li v-for="building in fetchedBuildings" :key="building.id" class="building-card">
+      <li v-for="building in fetchedBuildings"
+          :key="building.id"
+          class="building-card"
+          :class="vacancies(building.name)"
+      >
         <RouterLink
           :to="{ name: 'Building', params: { name: building.name, id: building.id }}"
         >
@@ -46,6 +53,7 @@ export default {
   name: 'Buildings',
   data () {
     return {
+      bldgName: ''
     }
   },
   computed: {
@@ -65,6 +73,13 @@ export default {
     ]),
     occupants: function (name) {
       return this.fetchedOffices.filter(office => office.building === name)
+    },
+    vacancies: function (name) {
+      const occ = this.fetchedOffices.filter(office => office.building === name)
+      const numFloors = this.fetchedBuildings.find(building => building.name === name).number_of_floors
+      return {
+        green: occ.length < numFloors
+      }
     }
   },
   created () {
@@ -91,5 +106,9 @@ export default {
 
 .company {
   margin: 5px 0;
+}
+
+.green {
+  background: #b6ead3;
 }
 </style>

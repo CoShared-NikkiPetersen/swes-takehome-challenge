@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Building from '../components/Building'
 import Company from '../components/Company'
+import Companies from '../views/Companies'
+import Buildings from '../views/Buildings'
 
 Vue.use(VueRouter)
 
@@ -21,7 +23,7 @@ const routes = [
   {
     path: '/companies',
     name: 'Companies',
-    component: () => import(/* webpackChunkName: "companies" */ '../views/Companies.vue')
+    component: Companies
   },
   {
     path: '/company/:name',
@@ -31,7 +33,7 @@ const routes = [
   {
     path: '/buildings',
     name: 'Buildings',
-    component: () => import(/* webpackChunkName: "buildings" */ '../views/Buildings.vue')
+    component: Buildings
   },
   {
     path: '/building/:name',
