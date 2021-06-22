@@ -25,8 +25,8 @@ export default {
   computed: {
     ...mapState([
       // 'fetchedBuildings',
-      'fetchedCompanies'
-      // 'fetchedEmployees',
+      'fetchedCompanies',
+      'fetchedEmployees'
       // 'fetchedOffices'
     ])
   }
