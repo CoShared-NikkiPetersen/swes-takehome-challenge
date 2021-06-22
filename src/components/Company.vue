@@ -1,13 +1,20 @@
 <template>
   <div class="company-wrapper">
     <h1>{{ this.$route.params.name }}</h1>
+    <h3>Offices
+<!--      (total rent:  {{ calcTotalRent() }})-->
+    </h3>
     <ul>
-      <li v-for="office in officesByCompany" :key="office.id">
+      <li v-for="office in officesByCompany" :key="office.id" class="office-card">
         Building: {{ office.building }}, Floor: {{ office.floor }}
+        <br>
+        Rent for this building: {{ calculateRent(office.building) }}
       </li>
     </ul>
-    <p>floor</p>
-    <p>List of employees</p>
+    <h3>Staff</h3>
+    <ul>
+      <li v-for="employee in staff" :key="employee.id">{{ employee.first_name }} {{ employee.last_name }}, {{ employee.title }}</li>
+    </ul>
     <p>Add/remove employee in company</p>
     <p>total rent being paid (all floors, all buildings)</p>
   </div>
@@ -21,27 +28,39 @@ export default {
   data () {
     return {
       officesByCompany: [],
-      currentCompany: null
+      totalRent: 0
     }
   },
   computed: {
     ...mapState([
-      // 'fetchedBuildings',
-      // 'fetchedCompanies',
+      'fetchedBuildings',
       'fetchedEmployees',
       'fetchedOffices'
     ]),
-    company: function () {
-      console.log(this.$route.params.name)
+    company () {
       return this.$store.getters.getSelectedCompany(this.$route.params.name)
+    },
+    staff () {
+      return this.fetchedEmployees.filter(employee => employee.company === this.company.name)
     }
-    // sortedOffices: function () {
-    //   // take fetchedOffices and filter by this company, then map it by the building
-    //   // display
-    // }
   },
   created () {
     return this.officesByCompany.push(...this.fetchedOffices.filter(office => office.company === this.company.name).map(office => office))
+  },
+  methods: {
+    calculateRent (buildingName) {
+      const renting = this.fetchedBuildings.filter(building => building.name === buildingName)
+      const rent = renting.map(r => r.rent_per_floor) * renting.length
+      return Number(rent)
+    }
+    // calcTotalRent: function () {
+    //   // let total = 0
+    //   // // find rent for each office in each building and add them up
+    //   // const renting = this.fetchedBuildings.filter(building => building.name === this.$route.params.name)
+    //   // const rent = renting.map(r => r.rent_per_floor) * renting.length
+    //   // total = rent.forEach(v => v)
+    //   return true
+    // }
   }
 }
 </script>
@@ -49,5 +68,14 @@ export default {
 <style scoped>
 li {
   list-style-type: none;
+}
+
+.office-card {
+  width: 30%;
+  padding: 10px;
+  list-style-type: none;
+  margin: 10px;
+  border: 1px solid grey;
+  border-radius: 5px;
 }
 </style>
