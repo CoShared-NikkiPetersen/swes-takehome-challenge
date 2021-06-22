@@ -13,7 +13,6 @@ export default {
   name: 'Company',
   computed: {
     company: function () {
-      console.log('should be params name: ', this.$route.params.name)
       return this.$store.getters.getSelectedCompany(this.$route.params.name)
     }
   }

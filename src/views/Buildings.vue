@@ -8,8 +8,15 @@
         >
           {{ building.name }}
         </RouterLink>
-        <ul><h3>Tenants</h3>
-          <li v-for="company in occupants(building.name)" :key="company.id">{{ company.company }}</li>
+        <h3 class="tenants">Tenants</h3>
+        <ul>
+          <li v-for="company in occupants(building.name)" :key="company.id" class="company">
+            <RouterLink
+              :to="{ name: 'Company', params: { name: company.company, id: company.id }}"
+            >
+              {{ company.company }}
+            </RouterLink>
+          </li>
         </ul>
       </li>
     </ul>
@@ -77,5 +84,12 @@ export default {
   margin: 10px;
   border: 1px solid grey;
   border-radius: 5px;
+}
+.tenants {
+  padding: 0 10px;
+}
+
+.company {
+  margin: 5px 0;
 }
 </style>
