@@ -1,12 +1,32 @@
 <template>
   <div class="buildings">
     <h1>Buildings</h1>
-    <p>
-      <RouterLink :to="{ name: 'Building', params: {name: 'DEN1'}}">DEN1 </RouterLink>| companies in this building | total rent (based on occupancy) | available floors (1,3,6...)
-    </p>
-    <p>
-      <RouterLink :to="{ name: 'Building', params: {name: 'CHI1'}}">CHI1 </RouterLink>| companies in this building | total rent (based on occupancy) | available floors (2,4...)
-    </p>
+    <h4>Buildings with vacancies are green</h4>
+    <h4>Click on a building name to see that building's details and to add a company.</h4>
+    <h4>Click on a tenant to see that company's details and to add employees.</h4>
+    <ul>
+      <li v-for="building in fetchedBuildings"
+          :key="building.id"
+          class="building-card"
+          :class="vacancies(building.name)"
+      >
+        <RouterLink
+          :to="{ name: 'Building', params: { name: building.name, id: building.id }}"
+        >
+          {{ building.name }}
+        </RouterLink>
+        <h3 class="tenants">Tenants</h3>
+        <ul>
+          <li v-for="company in occupants(building.name)" :key="company.id" class="company">
+            <RouterLink
+              :to="{ name: 'Company', params: { name: company.company, id: company.id, slug: company.slug }}"
+            >
+              {{ company.company }}
+            </RouterLink>
+          </li>
+        </ul>
+      </li>
+    </ul>
 
     <ul> Buildings
       <li v-for="building in fetchedBuildings" :key="building.id">{{ building }}</li>
@@ -33,6 +53,7 @@ export default {
   name: 'Buildings',
   data () {
     return {
+      bldgName: ''
     }
   },
   computed: {
@@ -49,7 +70,18 @@ export default {
       'fetchCompanies',
       'fetchEmployees',
       'fetchOffices'
-    ])
+    ]),
+    occupants: function (name) {
+      return this.fetchedOffices.filter(office => office.building === name)
+    },
+    vacancies: function (name) {
+      const occ = this.fetchedOffices.filter(office => office.building === name)
+      const numFloors = this.fetchedBuildings.find(building => building.name === name).number_of_floors
+      return {
+        green: occ.length < numFloors,
+        red: occ.length === numFloors
+      }
+    }
   },
   created () {
     this.fetchBuildings()
@@ -61,5 +93,27 @@ export default {
 </script>
 
 <style scoped>
+.building-card {
+  width: 30%;
+  padding: 10px;
+  list-style-type: none;
+  margin: 10px;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+.tenants {
+  padding: 0 10px;
+}
 
+.company {
+  margin: 5px 0;
+}
+
+.green {
+  background: #b6ead3;
+}
+
+.red {
+  background: #eab6b6;
+}
 </style>

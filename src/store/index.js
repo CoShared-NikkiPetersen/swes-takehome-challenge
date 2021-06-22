@@ -76,7 +76,22 @@ export default new Vuex.Store({
           context.commit('setFetchedOffices', snapArray)
         })
     }
+    // createCompany (context, payload) {
+    //   db.collection('companies').add({
+    //     name: payload.name
+    // })
   },
   modules: {
+  },
+  getters: {
+    getSelectedBuilding: (state) => (name) => {
+      return state.fetchedBuildings.find(building => building.name === name)
+    },
+    getSelectedCompany: (state) => (name) => {
+      return state.fetchedCompanies.find(company => company.name === name)
+    },
+    getOccupants: (state) => (name) => {
+      return state.fetchedOffices(office => office.building === name)
+    }
   }
 })
