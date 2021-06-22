@@ -4,7 +4,7 @@
     <ul>
       <li v-for="company in fetchedCompanies" :key="company.id" class="company-card">
         <RouterLink
-          :to="{ name: 'Company', params: { name: company.name, id: company.id }}"
+          :to="{ name: 'Company', params: { name: company.name, id: company.id, slug: company.slug }}"
         >
           {{ company.name }}
         </RouterLink>

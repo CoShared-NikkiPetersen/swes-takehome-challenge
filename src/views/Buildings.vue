@@ -12,7 +12,7 @@
         <ul>
           <li v-for="company in occupants(building.name)" :key="company.id" class="company">
             <RouterLink
-              :to="{ name: 'Company', params: { name: company.company, id: company.id }}"
+              :to="{ name: 'Company', params: { name: company.company, id: company.id, slug: company.slug }}"
             >
               {{ company.company }}
             </RouterLink>

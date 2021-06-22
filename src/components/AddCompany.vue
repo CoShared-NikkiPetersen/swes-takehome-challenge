@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import slugify from 'slugify'
 import { mapState } from 'vuex'
 import firebase from '../firebaseConfig'
 const db = firebase
@@ -48,21 +49,30 @@ export default {
     // when adding a company, it gets added to the building and to offices
     // company should also have employees
     AddNewCompany () {
-      db.collection('companies').add({
-        name: this.companyName
-      })
+      if (!this.fetchedOffices.find(office => office.company === this.companyName)) {
+        const slugifiedName = slugify(this.question, {
+          replacement: '-',
+          remove: /[$*_+~.()'"!?\-:@]/g,
+          lower: true
+        })
 
-      db.collection('offices').add({
-        floor: this.selected,
-        company: this.companyName,
-        building: this.buildingName
-      })
-        .then(() => {
-          this.$router.push('/companies')
+        db.collection('companies').add({
+          name: this.companyName,
+          slug: slugifiedName
         })
-        .catch(err => {
-          console.log(err)
+
+        db.collection('offices').add({
+          floor: this.selected,
+          company: this.companyName,
+          building: this.buildingName
         })
+          .then(() => {
+            this.$router.push('/buildings')
+          })
+          .catch(err => {
+            console.log(err)
+          })
+      }
     },
     resetForm: function () {
       this.companyName = null
