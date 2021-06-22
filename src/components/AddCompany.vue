@@ -46,8 +46,6 @@ export default {
     ])
   },
   methods: {
-    // when adding a company, it gets added to the building and to offices
-    // company should also have employees
     AddNewCompany () {
       if (!this.fetchedOffices.find(office => office.company === this.companyName)) {
         const slugifiedName = slugify(this.question, {

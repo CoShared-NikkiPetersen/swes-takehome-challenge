@@ -1,6 +1,12 @@
 <template>
   <div class="company-wrapper">
-    <h1>{{ this.$route.params.name }}</h1>
+
+    <div class="row-container">
+      <h1>{{ this.$route.params.name }}</h1>
+      <button @click="showForm = !showForm">Add a new employee to this company</button>
+    </div>
+    <AddEmployee v-show="showForm" :companyName="this.$route.params.name"/>
+
     <h3>Offices
 <!--      (total rent:  {{ calcTotalRent() }})-->
     </h3>
@@ -22,12 +28,15 @@
 
 <script>
 import { mapState } from 'vuex'
+import AddEmployee from '@/components/AddEmployee'
 
 export default {
   name: 'Company',
+  components: { AddEmployee },
   data () {
     return {
       officesByCompany: [],
+      showForm: false,
       totalRent: 0
     }
   },
