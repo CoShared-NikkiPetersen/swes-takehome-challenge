@@ -5,7 +5,11 @@
       <h2>Building Name:  {{ building.name }}</h2>
       <button @click="showForm = !showForm">Add a new tenant in this building</button>
     </div>
-    <AddCompany v-show="showForm" :vacancies="vacancies" :buildingId="building.id"/>
+    <AddCompany v-show="showForm"
+                :vacancies="vacancies"
+                :buildingId="building.id"
+                :buildingName="building.name"
+    />
 
     <h2>Address:  {{ building.address[0] }}, {{ building.address[1] }}, {{ building.address[2] }}, {{ building.address[3] }}</h2>
     <h2>Country: {{ building.country }}</h2>

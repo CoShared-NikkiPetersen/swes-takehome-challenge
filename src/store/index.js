@@ -76,6 +76,10 @@ export default new Vuex.Store({
           context.commit('setFetchedOffices', snapArray)
         })
     }
+    // createCompany (context, payload) {
+    //   db.collection('companies').add({
+    //     name: payload.name
+    // })
   },
   modules: {
   },

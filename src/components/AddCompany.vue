@@ -1,6 +1,6 @@
 <template>
   <div class="form-container">
-    <form class="form" @submit.prevent="AddNew">
+    <form class="form" @submit.prevent="AddNewCompany">
       <div class="new" v-show="companyName">
         {{ companyName }}<span v-show="selected">, floor {{ selected }}</span>
       </div>
@@ -20,6 +20,8 @@
 
 <script>
 import { mapState } from 'vuex'
+import firebase from '../firebaseConfig'
+const db = firebase
 
 export default {
   name: 'AddCompany',
@@ -31,7 +33,8 @@ export default {
   },
   props: {
     vacancies: Array,
-    buildingId: String
+    buildingId: String,
+    buildingName: String
   },
   computed: {
     ...mapState([
@@ -44,6 +47,23 @@ export default {
   methods: {
     // when adding a company, it gets added to the building and to offices
     // company should also have employees
+    AddNewCompany () {
+      db.collection('companies').add({
+        name: this.companyName
+      })
+
+      db.collection('offices').add({
+        floor: this.selected,
+        company: this.companyName,
+        building: this.buildingName
+      })
+        .then(() => {
+          this.$router.push('/companies')
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
     resetForm: function () {
       this.companyName = null
     }
