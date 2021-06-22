@@ -78,7 +78,8 @@ export default {
       const occ = this.fetchedOffices.filter(office => office.building === name)
       const numFloors = this.fetchedBuildings.find(building => building.name === name).number_of_floors
       return {
-        green: occ.length < numFloors
+        green: occ.length < numFloors,
+        red: occ.length === numFloors
       }
     }
   },
@@ -110,5 +111,9 @@ export default {
 
 .green {
   background: #b6ead3;
+}
+
+.red {
+  background: #eab6b6;
 }
 </style>

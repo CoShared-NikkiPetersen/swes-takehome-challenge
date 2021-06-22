@@ -59,7 +59,7 @@ export default {
           company: this.companyName
         })
           .then(() => {
-            this.$router.push(`/companies/${this.companyName}`)
+            this.$router.push('/companies/')
           })
           .catch(err => {
             console.log(err)

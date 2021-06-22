@@ -48,7 +48,7 @@ export default {
   methods: {
     AddNewCompany () {
       if (!this.fetchedOffices.find(office => office.company === this.companyName)) {
-        const slugifiedName = slugify(this.question, {
+        const slugifiedName = slugify(this.companyName, {
           replacement: '-',
           remove: /[$*_+~.()'"!?\-:@]/g,
           lower: true
