@@ -1,19 +1,19 @@
 <template>
   <div class="home">
-    <h3>Click on a link above, to see Companies or Buildings</h3>
+    <section class="home__container">
+      <h1>Welcome to CoShared, an application for managing buildings and tenants in those buildings.</h1>
+      <h3>Click on a link above to see Buildings or Companies</h3>
+    </section>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'Home',
-  components: {
-  },
-  created () {
-    // todo ==> fetch to get data from back end
+  data () {
+    return {
+    }
   }
 }
 </script>
