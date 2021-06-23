@@ -66,9 +66,8 @@ yarn build
 ```
 
 ### Lints and fixes files
+
+If you have this spun up with `yarn serve`, then you shouldn't have to run the linter. It runs after save automagically.
 ```
 yarn lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
