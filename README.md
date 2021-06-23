@@ -4,9 +4,8 @@ a particular building, get information about a particular company (like how many
 delete a company from the directory. 
 
 ## Tech stack
-For this project, I used Vue.js for the front end and accessed the database directly with API calls. The database is 
-served from Firebase (using a NoSQL data model). 
-
+For this project, I used Vue.js for the front end and accessed the database directly with API calls. 
+The database is served from Firebase (using a NoSQL data model in Firestore).
 
 ## Project setup
 
