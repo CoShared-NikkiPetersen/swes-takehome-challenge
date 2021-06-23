@@ -97,6 +97,10 @@ button {
 .building-wrapper {
   margin: 30px;
 }
+.building-wrapper .no-vacancies {
+  margin: 30px;
+  color: red;
+}
 
 .details {
   padding: 10px;

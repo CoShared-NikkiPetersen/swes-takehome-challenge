@@ -4,7 +4,11 @@
       <h2>Building Name:  {{ building.name }}</h2>
       <button @click="showForm = !showForm">Add a new tenant in this building</button>
     </div>
+    <section v-if="vacancies.length === 0" v-show="showForm">
+      <p class="no-vacancies">There are no vacancies in this building. Please try a different building.</p>
+    </section>
     <AddCompany v-show="showForm"
+                v-else
                 :vacancies="vacancies"
                 :buildingId="building.id"
                 :buildingName="building.name"
@@ -83,7 +87,6 @@ export default {
   methods: {
     calculateIncome: function () {
       const occupied = this.fetchedOffices.filter(office => office.building === this.building.name).length
-      console.log(occupied)
       return this.building.rent_per_floor * occupied
     }
   }
