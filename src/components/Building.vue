@@ -30,7 +30,7 @@
         </li>
       </ul>
       <h3>Total income based on current occupancy:  ${{ calculateIncome() }}</h3>
-      <h3>Available floors: <span>{{ vacancies.join(', ') }} </span></h3>
+      <h3>Available floors: <span>{{ vacancies.length > 0 ? vacancies.join(', ') :  "None available" }} </span></h3>
       <h3>Employees in this building:  {{ currentEmployees }}</h3>
     </section>
 
