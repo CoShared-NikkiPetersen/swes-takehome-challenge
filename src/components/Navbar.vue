@@ -1,7 +1,10 @@
 <template>
   <div id="nav">
     <div>
-      <img src="../assets/logo.png" class="logo" alt="logo">
+      <router-link to="/">
+        <img src="../assets/logo2.png" class="logo" alt="logo">
+      </router-link>
+
     </div>
     <div>
       <router-link to="/">Home</router-link> |
