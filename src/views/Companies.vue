@@ -1,7 +1,7 @@
 <template>
   <div class="companies">
     <h1>Companies</h1>
-    <ul>
+    <ul class="companies-container">
       <li v-for="company in fetchedCompanies" :key="company.id" class="company-card">
         <RouterLink
           :to="{ name: 'Company', params: { name: company.name, id: company.id, slug: company.slug }}"

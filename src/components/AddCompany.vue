@@ -13,7 +13,7 @@
       <label for="companyName">Company Name: </label>
       <input id="companyName" type="text" name="companyName" minlength="5" v-model="companyName" required>
       <button class="button">Submit</button>
-      <button type="reset" @click="resetForm">Cancel</button>
+      <button class="button" type="reset" @click="resetForm">Cancel</button>
     </form>
   </div>
 </template>
@@ -58,19 +58,19 @@ export default {
           name: this.companyName,
           slug: slugifiedName
         })
-
-        db.collection('offices').add({
-          floor: this.selected,
-          company: this.companyName,
-          building: this.buildingName
-        })
-          .then(() => {
-            this.$router.push('/buildings')
-          })
-          .catch(err => {
-            console.log(err)
-          })
       }
+
+      db.collection('offices').add({
+        floor: this.selected,
+        company: this.companyName,
+        building: this.buildingName
+      })
+        .then(() => {
+          this.$router.push('/buildings')
+        })
+        .catch(err => {
+          console.log(err)
+        })
     },
     resetForm: function () {
       this.companyName = null
@@ -78,22 +78,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.form {
-  margin: 20px;
-}
-
-.new {
-  margin: 20px;
-  /*background: #42b983;*/
-}
-
-label {
-  margin: 10px;
-}
-
-button {
-  margin: 0 20px;
-}
-</style>

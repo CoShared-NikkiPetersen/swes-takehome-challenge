@@ -1,27 +1,39 @@
 <template>
   <div class="building-wrapper">
-<!--    <h1>{{ this.$route.params.name }}</h1>-->
     <div class="row-container">
       <h2>Building Name:  {{ building.name }}</h2>
       <button @click="showForm = !showForm">Add a new tenant in this building</button>
     </div>
+    <section v-if="vacancies.length === 0" v-show="showForm">
+      <p class="no-vacancies">There are no vacancies in this building. Please try a different building.</p>
+    </section>
     <AddCompany v-show="showForm"
+                v-else
                 :vacancies="vacancies"
                 :buildingId="building.id"
                 :buildingName="building.name"
     />
 
-    <h2>Address:  {{ building.address[0] }}, {{ building.address[1] }}, {{ building.address[2] }}, {{ building.address[3] }}</h2>
-    <h2>Country: {{ building.country }}</h2>
-    <h3>Rent per floor:  {{ building.rent_per_floor }}</h3>
-    <h3>Number of floors:  {{ building.number_of_floors }}</h3>
-    <h3>Occupied floors:</h3>
+    <section class="details">
+      <h2>Address:  {{ building.address[0] }}, {{ building.address[1] }}, {{ building.address[2] }}, {{ building.address[3] }}</h2>
+      <h2>Country: {{ building.country }}</h2>
+      <h3>Rent per floor:  ${{ building.rent_per_floor }}</h3>
+      <h3>Number of floors:  {{ building.number_of_floors }}</h3>
+      <h3>Occupied floors:</h3>
       <ul>
-        <li v-for="occupant in occupants" :key="occupant.id">{{ occupant.company}}, floor {{ occupant.floor }}</li>
+        <li v-for="occupant in occupants" :key="occupant.id" class="occupant">
+          <RouterLink
+            :to="{ name: 'Company', params: { name: occupant.company, id: occupant.id }}"
+          >
+            {{ occupant.company }}, floor {{ occupant.floor }}
+          </RouterLink>
+        </li>
       </ul>
-    <h3>Total income based on current occupancy:  {{ calculateIncome() }}</h3>
-    <h3>Available floors: <span>{{ vacancies.join(', ') }} </span></h3>
-    <h3>Employees in this building:  {{ currentEmployees }}</h3>
+      <h3>Total income based on current occupancy:  ${{ calculateIncome() }}</h3>
+      <h3>Available floors: <span>{{ vacancies.length > 0 ? vacancies.join(', ') :  "None available" }} </span></h3>
+      <h3>Employees in this building:  {{ currentEmployees }}</h3>
+    </section>
+
   </div>
 </template>
 
@@ -75,20 +87,8 @@ export default {
   methods: {
     calculateIncome: function () {
       const occupied = this.fetchedOffices.filter(office => office.building === this.building.name).length
-      return this.building.rent_per_floor * (this.building.number_of_floors - occupied)
+      return this.building.rent_per_floor * occupied
     }
   }
 }
 </script>
-
-<style scoped>
-.row-container {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-button {
-  margin: 0 20px;
-}
-</style>
