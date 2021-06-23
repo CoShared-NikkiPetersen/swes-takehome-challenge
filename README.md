@@ -20,8 +20,6 @@ when I have some spare time.
 why I couldn't update that value.
  * I made some decisions about where in the UI some functionality would live, which may or may not be how it was intended 
 by those who wrote the challenge. I hope the user experience is logical and pleasant to work with.
- * I tried to replace the `master` branch with `main` but I think GitHub won't allow that when the repo is forked, so just make sure 
-that you're running from main locally.
  * I need to sort offices for a company, by location. They currently are displayed in random order. 
  * The requirement of a user name being more than 5 characters was a little ambiguous, since there is no authentication here, so I added this 
    validation on a company name when adding a new company and on an employee first name (when adding a new employee). I felt that, 
@@ -49,10 +47,6 @@ Clone this repo and then run
 
 ```
 yarn install
-```
-Make sure you're running from `main` branch
-```
-git checkout main
 ```
 
 ### Spin it up locally
