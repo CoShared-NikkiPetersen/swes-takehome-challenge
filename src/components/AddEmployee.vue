@@ -46,6 +46,7 @@ export default {
   },
   methods: {
     AddNewEmployee () {
+      console.log('made it this far')
       if (!this.fetchedEmployees.find(empl => empl.first_name === this.employeeFirstName && empl.last_name === this.employeeLastName && empl.company === this.companyName)) {
         // const slugifiedName = slugify(this.question, {
         //   replacement: '-',
@@ -59,7 +60,7 @@ export default {
           company: this.companyName
         })
           .then(() => {
-            this.$router.push('/companies/')
+            this.resetForm()
           })
           .catch(err => {
             console.log(err)

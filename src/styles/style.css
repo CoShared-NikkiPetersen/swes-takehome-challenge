@@ -112,4 +112,51 @@ button {
   list-style-type: circle;
 }
 
+.form {
+  margin: 20px;
+}
+
+.new {
+  margin: 20px;
+  /*background: #42b983;*/
+}
+
+label {
+  margin: 10px;
+}
+
+.office-card {
+  width: 40%;
+  padding: 10px;
+  list-style-type: none;
+  margin: 10px;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+
+.company-wrapper {
+  margin: 30px;
+}
+
+#loc {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0 10px;
+}
+
+.staff {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.staff__delete--wrapper {
+  background: #eab6b6;
+  border-radius: 50px;
+}
+
 /*# sourceMappingURL=style.css.map */

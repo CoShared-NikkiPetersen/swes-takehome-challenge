@@ -47,7 +47,6 @@ export default {
   },
   methods: {
     AddNewCompany () {
-      console.log('MADE IT THIS FAR')
       if (!this.fetchedOffices.find(office => office.company === this.companyName)) {
         const slugifiedName = slugify(this.companyName, {
           replacement: '-',
@@ -79,22 +78,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.form {
-  margin: 20px;
-}
-
-.new {
-  margin: 20px;
-  /*background: #42b983;*/
-}
-
-label {
-  margin: 10px;
-}
-
-button {
-  margin: 0 20px;
-}
-</style>

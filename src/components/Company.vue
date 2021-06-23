@@ -6,29 +6,42 @@
     </div>
     <AddEmployee v-show="showForm" :companyName="this.$route.params.name"/>
 
-    <h3>Offices
-<!--      (total rent:  {{ calcTotalRent() }})-->
-    </h3>
-    <ul>
-      <li v-for="office in officesByCompany" :key="office.id" class="office-card">
-        <h3>Building: {{ office.building }}</h3>
-        Floor: {{ office.floor }}
-        <br>
-        Rent for this building: {{ calculateRent(office.building) }}
-      </li>
-    </ul>
-    <h3>Staff</h3>
-    <ul>
-      <li v-for="employee in staff" :key="employee.id">{{ employee.first_name }} {{ employee.last_name }}, {{ employee.title }}</li>
-    </ul>
-    <p>Add/remove employee in company</p>
-    <p>total rent being paid (all floors, all buildings)</p>
+    <section class="details">
+      <h3>Offices
+      <!--      (total rent:  {{ calcTotalRent() }})-->
+      </h3>
+      <ul>
+        <li v-for="office in officesByCompany" :key="office.id" class="office-card">
+          <h3>{{ office.building }}
+            <span id="loc">({{ getAddress(office.building).address[1] }}, {{ getAddress(office.building).address[2] }})</span>
+          </h3>
+          <p>Floor: {{ office.floor }}</p>
+          <p>Rent for this building: {{ calculateRent(office.building) }}</p>
+        </li>
+      </ul>
+      <h3>Staff</h3>
+      <ul>
+        <li v-for="employee in staff" :key="employee.id" class="staff">
+          <div class="staff__details">
+            {{ employee.first_name }} {{ employee.last_name }}, {{ employee.title }}
+          </div>
+          <div class="staff__delete">
+            <button class="staff__delete--wrapper" @click="removeEmployee(employee.id)">
+              <i class="fal fa-times"> </i>
+            </button>
+
+          </div>
+        </li>
+      </ul>
+    </section>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import AddEmployee from '@/components/AddEmployee'
+import firebase from '../firebaseConfig'
+const db = firebase
 
 export default {
   name: 'Company',
@@ -40,6 +53,11 @@ export default {
       totalRent: 0
     }
   },
+  // watch: {
+  //   $route (to, from) {
+  //     this.staff()
+  //   }
+  // },
   computed: {
     ...mapState([
       'fetchedBuildings',
@@ -61,7 +79,17 @@ export default {
       const renting = this.fetchedBuildings.filter(building => building.name === buildingName)
       const rent = renting.map(r => r.rent_per_floor) * renting.length
       return Number(rent)
+    },
+    getAddress (buildingName) {
+      return this.fetchedBuildings.find(building => building.name === buildingName)
+    },
+    removeEmployee (id) {
+      db.collection('employees').doc(id).delete()
+        .then(() => {
+          this.fetchedEmployees.filter(employee => employee.id !== id)
+        })
     }
+    // todo ==> finish this in a way that isn't updating state directly
     // calcTotalRent: function () {
     //   // let total = 0
     //   // // find rent for each office in each building and add them up
@@ -73,28 +101,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-li {
-  list-style-type: none;
-}
-
-.office-card {
-  width: 30%;
-  padding: 10px;
-  list-style-type: none;
-  margin: 10px;
-  border: 1px solid grey;
-  border-radius: 5px;
-}
-
-.row-container {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-button {
-  margin: 0 20px;
-}
-</style>
