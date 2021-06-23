@@ -159,4 +159,13 @@ label {
   border-radius: 50px;
 }
 
+.companies {
+  margin: 30px;
+}
+
+.companies-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
 /*# sourceMappingURL=style.css.map */

@@ -171,3 +171,12 @@ label {
   }
 }
 
+.companies {
+  margin: 30px;
+}
+
+.companies-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+

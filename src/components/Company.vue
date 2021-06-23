@@ -29,7 +29,6 @@
             <button class="staff__delete--wrapper" @click="removeEmployee(employee.id)">
               <i class="fal fa-times"> </i>
             </button>
-
           </div>
         </li>
       </ul>
@@ -53,7 +52,7 @@ export default {
       totalRent: 0
     }
   },
-  // watch: {
+  // watch: { // should refresh ui
   //   $route (to, from) {
   //     this.staff()
   //   }
@@ -84,6 +83,7 @@ export default {
       return this.fetchedBuildings.find(building => building.name === buildingName)
     },
     removeEmployee (id) {
+      // todo ==> fix this (makes it to db, but isn't refreshing ui)
       db.collection('employees').doc(id).delete()
         .then(() => {
           this.fetchedEmployees.filter(employee => employee.id !== id)
