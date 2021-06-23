@@ -37,6 +37,12 @@ a building's detailed view), perhaps in a table presentation. Lastly, although V
 I really didn't do any media queries and that should definitely be added. WAVE testing shows no errors and Lighthouse testing 
 results were 94% or better for all views.
 
+## The database
+
+Because Firebase isn't in a GitHub Repository, I thought you might like to see what it looks like, so here's a quick gif:
+
+[Firebase Firestore]()
+
 ## Project setup
 
 Clone this repo and then run
