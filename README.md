@@ -14,8 +14,8 @@ linter runs on save, so you don't have to worry about it.
 
 Although I was able to complete most of the specs for this project, there are some small bugs. These are tasks I will complete 
 when I have some spare time. 
- * When adding an employee, the UI should refresh
- * When deleting an employee, the UI should refresh
+ * When adding an employee, the UI should refresh (does go to db, but doesn't reflect in the UI)
+ * When deleting an employee, the UI should refresh (does go to db, but doesn't reflect in the UI)
  * Calculating total rent for a building proved shockingly difficult. I think it's a Vue thing, so I'll dive into learning 
 why I couldn't update that value.
  * I made some decisions about where in the UI some functionality would live, which may or may not be how it was intended 
@@ -23,8 +23,8 @@ by those who wrote the challenge. I hope the user experience is logical and plea
  * I tried to replace the `master` branch with `main` but I think GitHub won't allow that when the repo is forked, so just make sure 
 that you're running from main locally.
  * I need to sort offices for a company, by location. They currently are displayed in random order. 
- * The requirement of a user name was a little ambiguous, since there is no requirement for auth here, so I put this 
-   requirement on a company name when adding a new company and on an employee first name (when adding a new employee). I felt that, 
+ * The requirement of a user name being more than 5 characters was a little ambiguous, since there is no authentication here, so I added this 
+   validation on a company name when adding a new company and on an employee first name (when adding a new employee). I felt that, 
    as those are the only forms here, that was where the spirit of the requirement would be.
    
 ## Future iterations
@@ -39,7 +39,7 @@ results were 94% or better for all views.
 
 ## The database
 
-Because Firebase isn't in a GitHub Repository, I thought you might like to see what it looks like, so here's a quick gif:
+Because Firebase isn't in a GitHub Repository, I thought you might like to see what it looks like, so here's a quick gif (I can't seem to make it big enough to see detail well but small enough for GitHub to accept it):
 
 ![Firebase Firestore](https://media.giphy.com/media/B43quirSryrupEnEjI/giphy.gif)
 
