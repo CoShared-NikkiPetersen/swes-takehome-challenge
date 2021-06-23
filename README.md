@@ -55,7 +55,9 @@ Make sure you're running from `main` branch
 git checkout main
 ```
 
-### Compiles and hot-reloads for development
+### Spin it up locally
+
+You'll probably be running on localhost:8080, but you'll get that confirmation in your terminal.
 ```
 yarn serve
 ```
