@@ -41,7 +41,7 @@ results were 94% or better for all views.
 
 Because Firebase isn't in a GitHub Repository, I thought you might like to see what it looks like, so here's a quick gif:
 
-[Firebase Firestore](/coshared_screen.mp4)
+![Firebase Firestore](/coshared_gif.mp4)
 
 ## Project setup
 
